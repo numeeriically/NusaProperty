@@ -145,9 +145,27 @@
     }
 
 
+    .property-carousel {
+      display: grid;
+      grid-template-columns: 40px minmax(0, 1fr) 40px;
+      align-items: center;
+      gap: 12px;
+    }
+
+
     .property-swiper {
       width: 100%;
+      min-width: 0;
       padding: 8px 8px 46px;
+    }
+
+    .property-carousel .swiper-button-next,
+    .property-carousel .swiper-button-prev {
+      position: static;
+      width: 40px;
+      height: 40px;
+      margin: 0;
+      color: var(--primary);
     }
 
 
@@ -173,12 +191,6 @@
 
     .property-swiper .swiper-pagination-bullet-active {
       background: var(--primary);
-    }
-
-
-    .property-swiper .swiper-button-next,
-    .property-swiper .swiper-button-prev {
-      color: var(--primary);
     }
 
 
@@ -307,9 +319,10 @@
         </p>
       </section>
       
-      <div class="swiper-button-next" aria-label="Properti berikutnya"></div>
-      <div class="swiper-button-prev" aria-label="Properti sebelumnya"></div>
-      <section class="swiper property-swiper mySwiper" aria-label="Tiga properti pilihan">
+      
+      <div class="property-carousel">
+        <div class="swiper-button-prev" aria-label="Properti sebelumnya"></div>
+        <section class="swiper property-swiper mySwiper" aria-label="Tiga properti pilihan">
         
         <div class="swiper-wrapper">
             
@@ -398,9 +411,10 @@
             </article>
           </div>
         </div>
-        
         <div class="swiper-pagination"></div>
-      </section>
+        </section>
+        <div class="swiper-button-next" aria-label="Properti berikutnya"></div>
+      </div>
         
 
       
