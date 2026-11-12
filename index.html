@@ -1,326 +1,56 @@
-<!DOCTYPE html>
-<html lang="id">
-
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Jelajahi tiga properti pilihan bersama NusaProperti.">
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@14.0.1/swiper-bundle.min.css"
-    />
-  <title>Latihan Properti — NusaProperti</title>
-  <style>
-    :root {
-      color-scheme: light;
-      --primary: #194668;
-      --primary-dark: #133854;
-      --accent: #c5804b;
-      --background: #f7f8fa;
-      --text: #183746;
-      --muted: #647b8c;
-      --border: #e8ecf0;
-      --white: #fff;
-      --shadow: 0 12px 34px rgba(25, 70, 104, 0.08);
-    }
-
-
-    * {
-      box-sizing: border-box;
-    }
-
-
-    body {
-      min-width: 320px;
-      min-height: 100vh;
-      margin: 0;
-      background: var(--background);
-      color: var(--text);
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.5;
-    }
-
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-
-    .page {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 22px 0 64px;
-    }
-
-
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 4px 20px;
-      border-bottom: 1px solid var(--border);
-    }
-
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--primary);
-      font-size: 1.2rem;
-      font-weight: 750;
-      letter-spacing: -0.03em;
-    }
-
-
-    .brand-icon {
-      display: grid;
-      width: 38px;
-      height: 38px;
-      place-items: center;
-      border-radius: 12px;
-      background: rgba(25, 70, 104, 0.08);
-    }
-
-
-    .brand-icon svg {
-      width: 22px;
-      height: 22px;
-    }
-
-
-    .contact-link {
-      padding: 10px 18px;
-      border-radius: 999px;
-      background: var(--primary);
-      color: var(--white);
-      font-size: 0.88rem;
-      font-weight: 650;
-      transition: background 180ms ease, transform 180ms ease;
-    }
-
-
-    .contact-link:hover {
-      transform: translateY(-1px);
-      background: var(--primary-dark);
-    }
-
-
-    .intro {
-      max-width: 680px;
-      margin: 62px auto 42px;
-      text-align: center;
-    }
-
-
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 12px;
-      color: var(--accent);
-      font-size: 0.75rem;
-      font-weight: 750;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-
-    h1 {
-      margin: 0 0 14px;
-      color: var(--primary);
-      font-size: clamp(2rem, 5vw, 3.1rem);
-      font-weight: 750;
-      letter-spacing: -0.055em;
-      line-height: 1.1;
-    }
-
-
-    .intro p {
-      max-width: 580px;
-      margin: 0 auto;
-      color: var(--muted);
-      font-size: 0.96rem;
-      line-height: 1.7;
-    }
-
-
-    .property-carousel {
-      display: grid;
-      grid-template-columns: 40px minmax(0, 1fr) 40px;
-      align-items: center;
-      gap: 12px;
-    }
-
-
-    .property-swiper {
-      width: 100%;
-      min-width: 0;
-      padding: 8px 8px 46px;
-    }
-
-    .property-carousel .swiper-button-next,
-    .property-carousel .swiper-button-prev {
-      position: static;
-      width: 40px;
-      height: 40px;
-      margin: 0;
-      color: var(--primary);
-    }
-
-
-    .property-swiper .swiper-slide {
-      height: auto;
-    }
-
-
-    .property-card {
-      height: 100%;
-      overflow: hidden;
-      border: 1px solid rgba(25, 70, 104, 0.06);
-      border-radius: 18px;
-      background: var(--white);
-      box-shadow: var(--shadow);
-      transition: transform 220ms ease, box-shadow 220ms ease;
-    }
-
-    .property-swiper .swiper-pagination {
-      bottom: 8px;
-    }
-
-
-    .property-swiper .swiper-pagination-bullet-active {
-      background: var(--primary);
-    }
-
-
-    .property-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 42px rgba(25, 70, 104, 0.14);
-    }
-
-
-    .card-image-wrap {
-      padding: 10px 10px 0;
-    }
-
-
-    .card-image {
-      width: 100%;
-      height: 220px;
-      border-radius: 12px;
-      object-fit: cover;
-    }
-
-
-    .badge {
-      top: 20px;
-      left: 20px;
-      padding: 5px 11px;
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      border-radius: 999px;
-      background: rgba(25, 70, 104, 0.88);
-      color: var(--white);
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-    }
-
-
-    .card-content {
-      padding: 18px 20px 22px;
-    }
-
-
-    .location {
-      margin: 0 0 7px;
-      color: var(--muted);
-      font-size: 0.78rem;
-    }
-
-
-    .property-name {
-      margin: 0 0 12px;
-      color: var(--text);
-      font-size: 1.16rem;
-      font-weight: 720;
-      letter-spacing: -0.025em;
-    }
-
-
-    .specs {
-      display: flex;
-      gap: 16px;
-      padding-bottom: 15px;
-      border-bottom: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.82rem;
-    }
-
-
-    .price-row {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 8px;
-      padding-top: 15px;
-    }
-
-
-    .price-label {
-      color: var(--muted);
-      font-size: 0.75rem;
-    }
-
-
-    .price {
-      color: var(--primary);
-      font-size: 1.05rem;
-      font-weight: 750;
-      letter-spacing: -0.025em;
-    }
-
-
-    .page-note {
-      margin: 34px 0 0;
-      color: var(--muted);
-      font-size: 0.78rem;
-      text-align: center;
-    }
-  </style>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nusa Property</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@14.0.1/swiper-bundle.min.css"/>
 </head>
+  <body>
 
+<div class="container-site">
+    <div class="hero">
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-lg bg-transparent pt-5 ">
+            <div class="container">
+                <a class="navbar-brand" href="#"><i class="fa-solid fa-house"></i> Nusa Property</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Property</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Tentang Kami</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Kontak</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-<body>
-  <div class="page">
-    <header class="topbar">
-      <a class="brand" href="index.html" aria-label="NusaProperti — kembali ke beranda">
-        <span class="brand-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round">
-            <path d="M3 9.5L12 3l9 6.5"></path>
-            <path d="M19 13v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-6"></path>
-            <path d="M9 21v-6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v6"></path>
-          </svg>
-        </span>
-        NusaProperti
-      </a>
-      <a class="contact-link" href="index.html#contacts">Hubungi Kami</a>
-    </header>
+        <!-- Hero Text -->
+         <div class="hero-content d-flex justify-content-center flex-column">
+            <h1 class="hero-title">Temukan Properti<br><span>Impian Anda</span></span></h1>
 
+            <p class="hero-subtitle">
+                NusaProperti membantu Anda menemukan hunian dan peluang investasi yang tepat untuk masa depan. Jelajahi pilihan properti unggulan di berbagai kota di Indonesia bersama tim profesional kami.
+            </p>
+         </div>
+    </div>
+</div>
 
-    <main>
-      <section class="intro" aria-labelledby="page-title">
-        <span class="eyebrow">Koleksi Properti</span>
-        <h1 id="page-title">Temukan hunian yang terasa seperti rumah</h1>
-        <p>
-          Pilihan rumah dan vila di lokasi strategis, dikurasi untuk membantu Anda menemukan tempat yang sesuai dengan
-          kebutuhan dan gaya hidup.
-        </p>
-      </section>
-      
-      
-      <div class="property-carousel">
+<div class="property-carousel">
         <div class="swiper-button-prev" aria-label="Properti sebelumnya"></div>
         <section class="swiper property-swiper mySwiper" aria-label="Tiga properti pilihan">
         
@@ -415,26 +145,88 @@
         </section>
         <div class="swiper-button-next" aria-label="Properti berikutnya"></div>
       </div>
+
+<div class="mid-section">
+    <div class="r-sectionBox rounded-5">
+        <span class="reviewAmount bottom top-50">
+            <h1 class="rAmountInt">12.900</h1>
+            <p class="rAmountTxt">Pelanggan Puas</p>
+        </span>
+    </div>
+    <div class="l-sectionBox">
         
+        <h1 class="l-sectionTitle">Mitra Tepercaya untuk Properti Anda</h1>
+        <p class="l-sectionTxt">NusaProperti adalah mitra konsultasi properti yang membantu Anda menemukan hunian, ruang usaha, maupun aset investasi yang sesuai kebutuhan. Kami mengenal karakter setiap kawasan dan membantu Anda memahami pilihan yang tersedia sebelum mengambil keputusan.<br><br>
+            Pendampingan kami mencakup konsultasi kebutuhan, peninjauan properti, pembahasan harga, hingga proses transaksi. Setiap informasi disampaikan dengan jelas agar Anda dapat melangkah dengan lebih yakin, baik saat membeli, menjual, menyewakan, maupun mengembangkan properti.
+</p>
+        <li class="liCheck"><i class="fa-solid fa-check"></i> Konsultasi sesuai kebutuhan dan anggaran</li>
+        <li class="liCheck"><i class="fa-solid fa-check"></i> Informasi properti dan harga yang transparan</li>
+        <li class="liCheck"><i class="fa-solid fa-check"></i> Pendampingan profesional dari awal hingga transaksi</li>
 
-      
-      
-      
-
-
-      <p class="page-note">Informasi harga dan ketersediaan dapat berubah. Hubungi tim kami untuk detail terbaru.</p>
-    </main>
+        <button class="checkProperty rounded-5">Lihat Properti <i class="fa-solid fa-arrow-right"></i></button>
+    </div>
     
-  </div>
+</div>
+    <!-- Swiper -->
+    
 
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@14.0.1/swiper-bundle.min.js"></script>
+    <div class="contact-section">
+        <h1 class="contactHeading">Mari Bicarakan Kebutuhan Properti Anda</h1>
+        <p class="contactText">Hubungi tim NusaProperti untuk berkonsultasi tentang hunian, properti komersial, atau peluang investasi.</p>
+        <div class="contact-card-row">
+            <div class="contact-card col rounded-2">
+                <span class="logo-fa-card rounded-5"><i class="fa-solid fa-envelope"></i></span>
+                <h3 class="title-contact-card">Email</h3>
+                <p class="txt-contact-card">Kirim pertanyaan atau kebutuhan properti Anda</p>
+                <p class="info-contact-card">halo@nusaproperti.id</p>
+            </div>
+            <div class="contact-card col rounded-2">
+                <span class="logo-fa-card rounded-5"><i class="fa-solid fa-phone"></i></span>
+                <h3 class="title-contact-card">Email</h3>
+                <p class="txt-contact-card">Tim kami siap membantu dan menjawab pertanyaan Anda</p>
+                <p class="info-contact-card">+62 21 5550 2026</p>
+            </div>
+            <div class="contact-card col rounded-2">
+                <span class="logo-fa-card rounded-5"><i class="fa-solid fa-location-dot"></i></span>
+                <h3 class="title-contact-card">Kantor</h3>
+                <p class="txt-contact-card">Kunjungi kantor kami untuk konsultasi langsung</p>
+                <p class="info-contact-card">Jl. Jenderal Sudirman, No. 12, Jakarta Selatan</p>
+            </div>
+        </div>
+    </div>
 
-    <!-- Initialize Swiper -->
-    <script>
-      var swiper = new Swiper('.mySwiper', {
+    <footer>
+        <div class="firstColumnDiv">
+            <span class="firstColumn"><i class="fa-solid fa-house"></i> Nusa Property</span>
+            <p class="firstTextColumn">Mitra terpercaya untuk jual beli, sewa, dan investasi properti di-Indonesia</p>
+        </div>
+        <div class="linkNav">
+            <span class="titleLinksNav">Tautan</span>
+            <a href="#" class="linksCol">Beranda</a>
+            <a href="#" class="linksCol">Properti</a>
+            <a href="#" class="linksCol">Tentang Kami</a>
+            <a href="#" class="linksCol">Kontak</a>
+        </div>
+        <div class="contactUs-footer">
+            <span class="cs-footer-span"><i class="fa-solid fa-envelope"></i> halo@nusaproperti.id</span>
+            <span class="cs-footer-span"><i class="fa-solid fa-location-dot"></i> Jl. Jenderal Sudirman No. 12, Jakarta Selatan</span>
+        </div>
+        <div class="mediaSocial-footer">
+            <a href="#" class="ms-footer"><i class="fa-brands fa-instagram"></i> Instagram</a>
+            <a href="#" class="ms-footer"><i class="fa-brands fa-facebook"></i> Facebook</a>
+            <a href="#" class="ms-footer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+        </div>
+        <span class="footer-copyright"></span>
+    </footer>
+
+<!-- Linking Bootstraps and Tools -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js" integrity="sha384-WyOxWvTyr1QaMPfiPJSv76iReVthorl5uWlFtZPyK0IEB0hGzo9y5Bp9mYanr8Bu" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@14.0.1/swiper-bundle.min.js"></script>
+
+<script>
+          var swiper = new Swiper('.mySwiper', {
         slidesPerView: 3,
-        spaceBetween: 20,
+        spaceBetween: 50,
         loop: true,
         pagination: {
           el: '.swiper-pagination',
@@ -445,9 +237,7 @@
           prevEl: '.swiper-button-prev',
         },
       });
-    </script>
+</script>
 
 </body>
-
-
 </html>
